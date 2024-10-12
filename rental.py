@@ -57,3 +57,4 @@ class Rental:
             # Other rentals get only 1 point
             frequent_renter_points += 1
         return frequent_renter_points
+
