@@ -54,14 +54,15 @@ class Children(PriceStrategy):
         return 1
 
 
+REGULAR = Regular()
+NEW_RELEASE = NewRelease()
+CHILDREN = Children()
+
+
 class Movie:
     """
     A movie available for rent.
     """
-
-    REGULAR = Regular()
-    NEW_RELEASE = NewRelease()
-    CHILDRENS = Children()
 
     def __init__(self, title, price_code: PriceStrategy):
         # Initialize a new movie. 
