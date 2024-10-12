@@ -75,6 +75,9 @@ class Movie:
     def __str__(self):
         return self.title
 
+    def get_price_code(self):
+        return self.price_code
+
     def get_price(self, days):
         return self.price_code.get_price(days)
 
