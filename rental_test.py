@@ -38,3 +38,4 @@ class RentalTest(unittest.TestCase):
 
         rental = Rental(self.childrens_movie, 2)
         self.assertEqual(rental.rental_points(), 1)
+
