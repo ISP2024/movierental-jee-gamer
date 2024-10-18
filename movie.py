@@ -1,6 +1,19 @@
 import logging
 from collections import Collection
+from typing import Optional
 
+class MovieCatalog:
+    _instance = None
+
+    # Read CSV once
+
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(MovieCatalog, cls).__new__(cls)
+        return cls._instance
+
+    def get_movie(self, title: str, year: Optional[int] = None):
+        # get movie with same stuff
 
 class Movie:
     """
