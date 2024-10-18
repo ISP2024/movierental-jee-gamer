@@ -1,5 +1,6 @@
 import logging
 
+
 class Movie:
     """
     A movie available for rent.

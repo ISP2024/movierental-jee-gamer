@@ -18,3 +18,8 @@ Before and after each refactoring you should **run the unit tests**.
 
 See [Resources](https://cpske.github.io/ISP/assignment/movierental/movierental-part1#resources) in the assignment description.
 
+## Rationale
+
+2.1 Middle Man <br>
+2.2 Single Responsibility Principle suggest this refactoring because movie is doing too much. It should only know about the movie but it also know about the rental price and points.
+
