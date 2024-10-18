@@ -1,11 +1,20 @@
 import logging
 from collections import Collection
 from typing import Optional
+import csv
 
 class MovieCatalog:
     _instance = None
 
-    # Read CSV once
+
+    def __init__(self):
+        self.movie = []
+        with open('data/movies.csv', newline='') as csvfile:
+            spamreader = csv.DictReader(csvfile, delimiter=' ', quotechar='|')
+            for row in spamreader:
+                movie = Movie(row['title'], row['year'], row['genres'])
+                movieID = row['#id']
+                # Do your stuff
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
