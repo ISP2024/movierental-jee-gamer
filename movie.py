@@ -1,20 +1,39 @@
 import logging
-from collections import Collection
+from collections.abc import Collection
 from typing import Optional
 import csv
+
 
 class MovieCatalog:
     _instance = None
 
-
     def __init__(self):
         self.movie = []
-        with open('data/movies.csv', newline='') as csvfile:
-            spamreader = csv.DictReader(csvfile, delimiter=' ', quotechar='|')
-            for row in spamreader:
-                movie = Movie(row['title'], row['year'], row['genres'])
-                movieID = row['#id']
-                # Do your stuff
+        with open('data/movies.csv', 'r', newline='') as csvfile:
+            csv_reader = csv.reader(csvfile)
+            for row in csv_reader:
+
+                # Skip blank line
+                if not row:
+                    continue
+
+                # Skip comment line
+                if row[0].startswith('#'):
+                    continue
+
+                # Check if invalid
+                if len(row) != 4:
+                    error_line = ','.join([x for x in row])
+                    logging.log(logging.ERROR, f"Unrecognized format "
+                                               f"{error_line}")
+                    continue
+
+                title = row[1]
+                year = int(row[2])
+                genre = row[3].split('|')
+
+                this_movie = Movie(title, year, genre)
+                self.movie.append(this_movie)
 
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
@@ -22,7 +41,12 @@ class MovieCatalog:
         return cls._instance
 
     def get_movie(self, title: str, year: Optional[int] = None):
-        # get movie with same stuff
+
+        for movie in self.movie:
+            if movie.title == title and (year is None or movie.year == year):
+                return movie
+        return None
+
 
 class Movie:
     """
@@ -55,3 +79,5 @@ class Movie:
         return that_genre in self.__genre
 
 
+if __name__ == "__main__":
+    a = MovieCatalog()
