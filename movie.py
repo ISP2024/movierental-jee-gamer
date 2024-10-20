@@ -2,6 +2,7 @@ import logging
 from collections.abc import Collection
 from typing import Optional
 import csv
+from datetime import datetime
 
 
 class MovieCatalog:
@@ -78,6 +79,3 @@ class Movie:
         that_genre = genre.lower()
         return that_genre in self.__genre
 
-
-if __name__ == "__main__":
-    a = MovieCatalog()
